@@ -1,0 +1,17 @@
+pip install Django 
+- installs the latest version 1.11.5
+pip list 
+- List installed packages, including editables.
+pip install Django (We know you already ran this one. What information do you see returned in terminal after this command?)
+- Requirement already satisfied: Django in c:\python27\lib\site-packages
+- Requirement already satisfied: pytz in c:\python27\lib\site-packages (from Django)
+pip freeze (What's the difference between freeze and list?)
+- pip freeze generates output suitable for a requirements file.
+First cd into your Desktop directory (cd ~/Desktop), then run this command: pip freeze > requirements.txt. What do you see when you ls? What's inside this file?
+- Creates a requirements.txt with "Django==1.11.5 pytz==2017.2"
+pip uninstall Django
+- Prompts the user to uninstall y/n
+pip show Django
+- Shows info about Django
+pip search Flask. This one might take a moment to execute.
+- Searches for PyPI packages whose name or summary contains <query>.
