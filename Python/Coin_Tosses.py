@@ -1,9 +1,9 @@
+heads = 0
+tails = 0
 for i in range(0,5000):
     import random
-    import math
+    # import math
     random_num = round(random.random())
-    heads = 0
-    tails = 0
     print random_num
     if random_num == 1:
         heads += 1

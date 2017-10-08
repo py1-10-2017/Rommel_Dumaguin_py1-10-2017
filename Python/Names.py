@@ -8,7 +8,7 @@ students = [
 
 def printStudents():
     for i in students:
-        print i["first_name"] + " " + i["last_name"]
+        print i["first_name"], i["last_name"]
 printStudents()
 
 print " "
@@ -32,12 +32,12 @@ def printStudentsCharCount():
     countStudents = 0
     for i in users["Students"]:
         countStudents += 1
-        print countStudents, i["first_name"] + " " + i["last_name"], len(i["first_name"]) + len(i["last_name"])
+        print countStudents, i["first_name"], i["last_name"], len(i["first_name"]) + len(i["last_name"])
     print "Instructors"
     countInstructors = 0
     for i in users["Instructors"]:
         countInstructors += 1
-        print countInstructors, i["first_name"] + " " + i["last_name"], len(i["first_name"]) + len(i["last_name"])
+        print countInstructors, i["first_name"], i["last_name"], len(i["first_name"]) + len(i["last_name"])
 printStudentsCharCount()
 
 # Write the following function.

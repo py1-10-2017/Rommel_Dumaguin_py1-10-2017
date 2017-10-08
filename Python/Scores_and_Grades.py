@@ -3,8 +3,8 @@ for i in range (0,9):
     import random
     import math
     random_num = int(random.random()*41)+60
-    print random_num
-    if random_num <= 69:
+    # print random_num
+    if random_num >= 60 and random_num <= 69:
         print "Score: " + str(random_num) + "; Your grade is D"
     elif random_num <= 79:
         print "Score: " + str(random_num) + "; Your grade is C"

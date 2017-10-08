@@ -2,7 +2,7 @@ x = [4, 6, 1, 3, 5, 7, 25]
 def draw_Stars(x):
     # print x
     for i in x:
-        print ("*") * i
+        print "*" * i
 draw_Stars(x)
 
 x = [4, "Tom", 1, "Michael", 5, 7, "Jimmy Smith"]
@@ -10,9 +10,9 @@ def draw_Stars(x):
     # print x
     for i in x:
         if isinstance(i,int):
-            print ("*") * i
+            print "*" * i
         elif isinstance(i,str):
-            print i.lower()[0] * len(i)
+            print i[0].lower() * len(i)
 draw_Stars(x)
 
 # Write the following functions.
