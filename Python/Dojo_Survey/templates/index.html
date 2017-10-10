@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+  </head>
+  <body>
+    <div class="container">
+      <form action='/result' method='post'>
+        <p>Your Name:<input type='text' name='name'></p>
+        <p>Dojo Location:
+        <select name="dojo_location">
+            <option value="online">Online</option>
+            <option value="bellevue">Bellevue</option>
+            <option value="other">Other</option>
+        </select></p>
+        <p>Favorite Language:
+        <select name="favorite_language">
+            <option value="javascript">Javascript</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="python">Python</option>
+            <option value="c#">C#</option>
+        </select></p>
+        <p>Comment (optional):</p>
+        <textarea name="comment" rows="5" cols="50"></textarea>
+        <input type='submit' value='Submit' class="submit">
+      </form>
+    </div>
+  </body>
+</html>
