@@ -28,16 +28,24 @@ users = {
  }
 
 def printStudentsCharCount():
-    print "Students"
-    countStudents = 0
-    for i in users["Students"]:
-        countStudents += 1
-        print countStudents, i["first_name"], i["last_name"], len(i["first_name"]) + len(i["last_name"])
-    print "Instructors"
-    countInstructors = 0
-    for i in users["Instructors"]:
-        countInstructors += 1
-        print countInstructors, i["first_name"], i["last_name"], len(i["first_name"]) + len(i["last_name"])
+    for key in users:
+        print key
+        print users[key]
+        group_of_users=users[key]
+        for i in range(0, len(group_of_users)):
+            # print i
+            full_name = group_of_users[i]['first_name'] + group_of_users[i]['last_name']
+            print "{} - {} {} - {}".format(i+1, group_of_users[i]['first_name'], group_of_users[i]['last_name'], len(full_name))
+    # print "Students"
+    # # countStudents = 0
+    # for i in users["Students"]:
+    #     # countStudents += 1
+    #     print i+1, i["first_name"], i["last_name"], len(i["first_name"]) + len(i["last_name"])
+    # print "Instructors"
+    # # countInstructors = 0
+    # for i in users["Instructors"]:
+    #     # countInstructors += 1
+    #     print i+1, i["first_name"], i["last_name"], len(i["first_name"]) + len(i["last_name"])
 printStudentsCharCount()
 
 # Write the following function.
