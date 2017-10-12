@@ -3,7 +3,7 @@
   background-color: lightgray;
   padding: 55px 20px;
   border: 3px solid black;
-  height: 20em;
+  height: 25em;
 }
 h1,
 p{
@@ -11,6 +11,10 @@ p{
 }
 button{
   margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+.guess_number{
   display: flex;
   justify-content: center;
 }

@@ -7,10 +7,24 @@
   </head>
   <body>
     <div class="container">
-        <h1>Counter</h1>
-        <p>{{ session['count'] }} times</p>
-        <a href="/plus2"><button type="button" name="plus2">+2</button></a>
-        <a href="/reset"><button type="button" name="reset">Reset</button></a>
+        <h1>Great Number Game</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+        <p>(Hint: # is {{ session['target'] }})</p>
+        <div class="guess_number">
+          <form action="/result", method="post">
+            Guess: <input type="number" name="guess">
+            <input type="submit" name="submit" value="Submit">
+          </form>
+        </div>
+        {% if session['result'] == 'low' %}
+        <p>Too low!</p>
+        {% elif session['result'] == 'high' %}
+        <p>Too high!</p>
+        {% elif session['result'] == 'correct' %}
+        <p>Correct!</p>
+        <a href="/reset"><button type="button" name="button">Play again!</button></a>
+        {% endif %}
     </div>
   </body>
 </html>
