@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+  </head>
+  <body>
+    <div class="container">
+        <label for="your_gold">Your Gold:</label>
+        <div id="your_gold">
+          <p>{{ session['gold'] }}</p>
+        </div>
+        <div class="buildings">
+          <form class="col" action="/process_money" method="post">
+            <h1>Farm</h1>
+            <p>(earns 10-20 golds)</p>
+            <input type="hidden" name="building" value="farm" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+          <form class="col" action="/process_money" method="post">
+            <h1>Cave</h1>
+            <p>(earns 5-10 golds)</p>
+            <input type="hidden" name="building" value="cave" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+          <form class="col" action="/process_money" method="post">
+            <h1>House</h1>
+            <p>(earns 2-5 golds)</p>
+            <input type="hidden" name="building" value="house" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+          <form class="col" action="/process_money" method="post">
+            <h1>Casino</h1>
+            <p>(earns/takes 0-50 golds)</p>
+            <input type="hidden" name="building" value="casino" />
+            <input type="submit" value="Find Gold!"/>
+          </form>
+        </div>
+        <label for="activities">Activities:</label>
+        <div id="activities">
+          {% for i in activities | reverse %}
+            <p class="{{ i['class'] }}">{{ i['activity'] }}</p>
+          {% endfor %}
+        </div>
+    </div>
+  </body>
+</html>

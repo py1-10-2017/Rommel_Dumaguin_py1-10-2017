@@ -1,0 +1,61 @@
+.container{
+  margin-top: 2em;
+  background-color: darkgray;
+  padding: 55px 20px;
+  border: 3px solid black;
+  height: 30em;
+}
+h1{
+  font-size: 2em;
+}
+h1,
+p{
+    text-align: center;
+}
+#activities p{
+  text-align: left;
+  margin: 0;
+}
+
+#your_gold{
+  background-color: white;
+  display: inline-block;
+  height: 25px;
+  width: 75px;
+}
+#activities{
+  background-color: white;
+  height: 125px;
+  width: 100%;
+}
+button{
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+.guess_number{
+  display: flex;
+  justify-content: center;
+}
+form{
+  display: inline-block;
+  background-color: lightgray;
+  height: 150px;
+  margin: 5px;
+  border: 2px solid black;
+  text-align: center;
+}
+div.buildings{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+form input{
+  box-shadow: 1px 1px 1px;
+}
+.win{
+  color: green;
+}
+.lose{
+  color: red;
+}
