@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+  </head>
+  <body>
+    <div class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <span><p>{{message}}</p></span>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form action='/process' method='post'>
+        <p>Email: <input type="text" name="email" value={{email}}></p>
+        <p>First Name: <input type='text' name='first_name' value={{first_name}}></p>
+        <p>Last Name: <input type='text' name='last_name' value={{last_name}}></p>
+        <p>Password: <input type='text' name='password'></p>
+        <p>Confirm Password: <input type='text' name='confirm_password'></p>
+        <input type='submit' value='Submit'>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>process</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+  </head>
+  <body>
+    <div class="container">
+      <h4><u>Submitted Info</u></h4>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <span>{{message}}</span>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <p>Email: {{ email }}</p>
+      <p>First Name: {{ first_name }}</p>
+      <p>Last Name: {{ last_name }}</p>
+      <p>Password: {{ password }}</p>
+      <p>Confirm Password: {{ confirm_password }}</p>
+      <a href="/"><button type="button" name="back">Go Back</button></a>
+    </div>
+  </body>
+</html>
