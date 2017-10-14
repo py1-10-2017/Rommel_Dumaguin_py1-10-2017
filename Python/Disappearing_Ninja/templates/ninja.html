@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ninja</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='images.css')}}">
+  </head>
+  <body>
+      {% if ninja %}
+        <img src="../static/images/{{ninja}}.jpg" alt="{{ninja}}.jpg">
+      {% else %}
+        <img src="../static/images/leonardo.jpg" alt="leonardo.jpg">
+        <img src="../static/images/Michelangelo.jpg" alt="Michelangelo.jpg">
+        <img src="../static/images/Raphael.jpg" alt="Raphael.jpg">
+        <img src="../static/images/Donatello.jpg" alt="Donatello.jpg">
+      {% endif %}
+  </body>
+</html>
