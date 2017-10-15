@@ -11,7 +11,7 @@ def main():
     if 'gold' not in session:
         session['gold'] = 0
         session['activities'] = []
-        session['win_lose'] = ''
+        # session['win_lose'] = ''
     # print session.keys()
     # print session['activities']
 
@@ -48,8 +48,6 @@ def result():
             session['activities'].append({'activity':"Earned {} gold from the casino! ({})".format(temp,time), 'class':'win'})
             # session['win_lose'] = 'win'
         session['gold'] += temp
-
-
 
    # if session['target'] == int(request.form['guess']):
    #     session['result'] = 'correct'

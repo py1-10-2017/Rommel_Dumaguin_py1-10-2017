@@ -1,9 +1,8 @@
 .container{
   margin-top: 2em;
   background-color: darkgray;
-  padding: 55px 20px;
+  padding: 20px;
   border: 3px solid black;
-  height: 30em;
 }
 h1{
   font-size: 2em;
@@ -26,6 +25,7 @@ p{
 #activities{
   background-color: white;
   height: 125px;
+  overflow-y: scroll;
   width: 100%;
 }
 button{
