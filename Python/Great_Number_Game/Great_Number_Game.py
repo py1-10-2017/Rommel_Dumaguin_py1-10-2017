@@ -6,7 +6,6 @@ import random
 
 @app.route('/')
 def main():
-
     if 'target' not in session:
         session['target'] = random.randrange(0,101)
     return render_template('index.html')
@@ -15,7 +14,6 @@ def main():
 def result():
    if session['target'] == int(request.form['guess']):
        session['result'] = 'correct'
-       session['end'] = 'true'
    elif session['target'] > int(request.form['guess']):
        session['result'] = 'low'
    elif session['target'] < int(request.form['guess']):
@@ -29,3 +27,5 @@ def reset():
    session.pop('result')
    return redirect('/')
 app.run(debug=True)     # Run the app in debug mode.
+
+# Create a site that when a user loads it creates a random number between 1-100 and stores the number in session. Allow the user to guess at the number and tell them when they are too high or too low. If they guess the correct number tell them and offer to play again.

@@ -19,3 +19,5 @@ def process():
     return render_template('process.html', x=request.form['name'], y=request.form['dojo_location'], z=request.form['favorite_language'],c=request.form['comment'])
     return redirect('/')
 app.run(debug=True)      # Run the app in debug mode.
+
+# Take the Dojo Survey assignment that you completed previously and add validations! The Name and Comment fields should be validated so that they are not blank. Also, validate that the comment field is no longer than 120 characters.
