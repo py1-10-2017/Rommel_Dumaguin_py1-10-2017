@@ -43,7 +43,8 @@ AND life_expectancy > 75;
 */
 /*
 7. What query would you run to get all the cities of Argentina inside the Buenos Aires district and have the population greater than 500, 000? The query should return the Country Name, City Name, District and Population.
-SELECT countries.name AS country, cities.name AS city, cities.district, cities.population FROM countries, cities
+SELECT countries.name AS country, cities.name AS city, cities.district, cities.population FROM countries
+LEFT JOIN cities ON countries.id = cities.country_id
 WHERE countries.name = 'Argentina'
 AND cities.district = 'Buenos Aires'
 AND cities.population > 500000
