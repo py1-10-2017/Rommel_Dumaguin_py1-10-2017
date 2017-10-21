@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Email_Validation_with_DB</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+  {#{{all_email}}#}
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p class="flash_error">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% if session['email_valid'] != True %}
+      <form class="email_input" action="/email" method="post">
+        <label for="email_address">Email Address:
+          <input type="text" name="email_address">
+        </label>
+          <input class="submit" type="submit" name="submit" value="Submit">
+      </form>
+    {% endif %}
+    {% if session['email_valid'] == True %}
+      <div class="result" style="{{session['style']}}">
+        <h3>The email address you entered "{{session['inputted_email']}}" is a VALID email address! Thank you!</h3>
+      </div>
+      <h1 class="float_left"><u>Email Addresses Entered:</u></h1>
+      <div class="email_entered">
+        {% for email in all_email: %}
+          <h5 class="email"><span class="float_left">{{ email['email'] }}</span><span class="float_right">{{ email['date']}} {{email['time'] }}</span></h5>
+        {% endfor %}
+    {% elif session['email_valid'] == False %}
+      <div class="result" style="{{session['style']}}">
+        <h3>The email address you entered is not valid!</h3>
+      </div>
+    {% endif %}
+    </div>
+  </div>
+</body>
+</html>

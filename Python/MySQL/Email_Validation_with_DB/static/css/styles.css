@@ -1,0 +1,46 @@
+.container{
+  background-color: lightgray;
+  width: 100%;
+  padding: 5em 1em;
+  text-align: center;
+  overflow: auto;
+}
+.result{
+  width: 350px;
+  margin: 2em auto;
+  border: 3px solid black;
+  padding: .2em;
+}
+.flash_error{
+  color: red;
+}
+.result_bad{
+  width: 500px;
+  margin: 2em auto;
+  background-color: red;
+  border: 3px solid black;
+}
+.email_input{
+  vertical-align: middle;
+  margin: auto;
+}
+.result h3{
+  text-align: center;
+}
+.submit{
+  box-shadow: 1px 1px 1px;
+}
+.email{
+  padding-left: 20px;
+  margin: 5px 0;
+}
+h5.email{
+  display:inline;
+}
+.float_right{
+  float: right;
+}
+.float_left{
+  float: left;
+  clear: both;
+}
