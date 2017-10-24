@@ -1,0 +1,48 @@
+.container{
+  background-color: lightgray;
+  width: 100%;
+  text-align: center;
+  overflow: auto;
+  padding: 1em;
+}
+table{
+  text-align: left;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 10px 0;
+}
+th,td{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 3px 5px;
+}
+.button{
+  display: inline-block;
+  box-shadow: 1px 1px 1px;
+}
+.edit_button{
+  width: 70px;
+}
+.delete_button{
+  width: 100px;
+}
+div.inputs{
+  vertical-align: top;
+  text-align: left;
+}
+ul{
+  list-style: none;
+  width: 300px;
+  padding: 0;
+  text-align: right;
+  display: inline-block;
+}
+form.inputs label{
+  margin-bottom: 2px;
+}
+.add_update{
+  display: inline-block;
+}
+.flash_error{
+  color: red;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Full_Friends_index</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+  <div class="container">
+      <table>
+        <thead>
+          <th>First Name</th><th>Last Name</th><th>Email</th><th>Actions</th>
+        </thead>
+        <tbody>
+          {% for idx in all_friends %}
+            <tr>
+              <td>{{ idx['first_name'] }}</td>
+              <td>{{ idx['last_name'] }}</td>
+              <td>{{ idx['email'] }}</td>
+              <td>
+                <form class="button" action="/friends/{{ idx['id'] }}/edit">
+                  <input class="edit_button" type="submit" name="edit" value="Edit">
+                </form>
+                <form class="button" action="/friends/{{ idx['id'] }}/delete" method="post">
+                  <input class="delete_button" type="submit" name="delete" value="Delete">
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% if session['email_valid'] != True %}
+    <div class="inputs">
+      <form class="add_update" action="/friends" method="post">
+      <ul>
+        <li>
+          <label for="first_name">First Name:
+            <input type="text" name="first_name">
+          </label>
+        </li>
+        <li>
+          <label for="last_name">Last Name:
+            <input type="text" name="last_name">
+          </label>
+        </li>
+        <li>
+          <label for="email">Email:
+            <input type="text" name="email">
+          </label>
+        </li>
+      </ul>
+          <input class="button" type="submit" name="add_friend" value="Add Friend">
+      </form>
+      {# {{all_friends}} #}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="flash_error">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+    {% endif %}
+    {% if session['email_valid'] == True %}
+      <div class="result" style="{{session['style']}}">
+        <h3>The email address you entered "{{session['inputted_email']}}" is a VALID email address! Thank you!</h3>
+      </div>
+      <h1 class="float_left"><u>Email Addresses Entered:</u></h1>
+      <div class="email_entered">
+        {% for email in all_email: %}
+          <h5 class="email"><span class="float_left">{{ email['email'] }}</span><span class="float_right">{{ email['date']}} {{email['time'] }}</span></h5>
+        {% endfor %}
+    {% elif session['email_valid'] == False %}
+      <div class="result" style="{{session['style']}}">
+        <h3>The email address you entered is not valid!</h3>
+      </div>
+    {% endif %}
+    </div>
+  </div>
+</body>
+</html>
