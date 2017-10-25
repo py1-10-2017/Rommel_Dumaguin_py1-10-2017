@@ -7,6 +7,8 @@
 </head>
 <body>
   <div class="container">
+    <div class="inputs">
+      <h5><em>Reference table of existing users:</em></h5>
       <table>
         <thead>
           <th>First Name</th><th>Last Name</th><th>Email</th><th>Actions</th>
@@ -29,7 +31,6 @@
           {% endfor %}
         </tbody>
       </table>
-    <div class="inputs">
       {# {{all_friends}} #}
       {% with messages = get_flashed_messages() %}
         {% if messages %}

@@ -92,7 +92,8 @@ def create():
         }
         new_user_id = mysql.query_db(query, data)
         print "new_user_id:", new_user_id
-        return redirect('/')
+        errors.append(flash("REGISTRATION SUCCESSFUL!"))
+        return redirect('/success')
 
 # @app.route('/login') POST
 # login()
