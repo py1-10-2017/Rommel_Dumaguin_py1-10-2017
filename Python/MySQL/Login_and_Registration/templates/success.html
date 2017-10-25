@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login_and_Registration_success</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+  <div class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="flash_error">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+  </div>
+</body>
+</html>

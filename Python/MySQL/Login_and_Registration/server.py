@@ -134,9 +134,17 @@ def login():
             session['id'] = user[0]['id']
             print "user[0]['id'] saving to session['id']:", session['id']
             errors.append(flash('LOGIN SUCCESSFUL!'))
+            return redirect('/success')
         else:
             errors.append(flash('Invalid password!'))
         return redirect('/')
+
+# @app.route('/success') GET
+# success()
+#     Display the success.html page after a successful login
+@app.route('/success')
+def success():
+    return render_template('success.html')
 
 # @app.route('/users/<id>/edit') GET
 # edit(id)
