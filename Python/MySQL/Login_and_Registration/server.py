@@ -41,7 +41,7 @@ def clear():
 
 # @app.route('/') GET
 # index()
-#     Display all of the friends on the index.html page
+#     Display login and registration forms on the index.html page
 @app.route('/')
 def index():
     if 'registration' not in session:
@@ -142,7 +142,7 @@ def login():
 
 # @app.route('/success') GET
 # success()
-#     Display the success.html page after a successful login
+#     Display the success.html page after a successful login/registration
 @app.route('/success')
 def success():
     return render_template('success.html')
@@ -192,7 +192,7 @@ def update(user_id):
         return redirect('/')
 
 # @app.route('/users/<id>/delete') POST
-# destroy(id)
+# delete(id)
 #     Delete the user from the DB
 @app.route('/users/<user_id>/delete', methods=['POST'])
 def delete(user_id):
