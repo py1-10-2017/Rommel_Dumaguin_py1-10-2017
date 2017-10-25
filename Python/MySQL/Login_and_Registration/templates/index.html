@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login_and_Registration_index</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+  <div class="container">
+      <table>
+        <thead>
+          <th>First Name</th><th>Last Name</th><th>Email</th><th>Actions</th>
+        </thead>
+        <tbody>
+          {% for idx in all_users %}
+            <tr>
+              <td>{{ idx['first_name'] }}</td>
+              <td>{{ idx['last_name'] }}</td>
+              <td>{{ idx['email'] }}</td>
+              <td>
+                <form class="button" action="/users/{{ idx['id'] }}/edit">
+                  <input class="edit_button" type="submit" name="edit" value="Edit">
+                </form>
+                <form class="button" action="/users/{{ idx['id'] }}/delete" method="post">
+                  <input class="delete_button" type="submit" name="delete" value="Delete">
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    <div class="inputs">
+      {# {{all_friends}} #}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="flash_error">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <h4>Registration</h4>
+      <form class="add_update" action="/register" method="post">
+      <ul>
+        <li>
+          <label for="first_name">First Name:
+            <input type="text" name="first_name" value="{{session['registration']['first_name']}}">
+          </label>
+        </li>
+        <li>
+          <label for="last_name">Last Name:
+            <input type="text" name="last_name" value="{{session['registration']['last_name']}}">
+          </label>
+        </li>
+        <li>
+          <label for="email">Email:
+            <input type="text" name="email" value="{{session['registration']['email']}}">
+          </label>
+        </li>
+        <li>
+          <label for="password">Password:
+            <input type="text" name="password">
+          </label>
+        </li>
+        <li>
+          <label for="password_confirmation">Password Confirmation:
+            <input type="text" name="password_confirmation">
+          </label>
+        </li>
+      </ul>
+          <input class="button" type="submit" name="register" value="Register">
+      </form>
+      <h4>Login</h4>
+      <form class="add_update" action="/login" method="post">
+      <ul>
+        <li>
+          <label for="email">Email:
+            <input type="text" name="email" value="{{session['registration']['login_email']}}">
+          </label>
+        </li>
+        <li>
+          <label for="password">Password:
+            <input type="text" name="password">
+          </label>
+        </li>
+      </ul>
+          <input class="button" type="submit" name="login" value="Login">
+      </form>
+    </div>
+  </div>
+</body>
+</html>
