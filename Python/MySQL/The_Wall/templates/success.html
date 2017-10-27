@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>The_Wall_success</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0-beta-dist/css/bootstrap.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+  <div class="container">
+    <div id="header">
+      <h1>The Wall</h1><a href="/logoff">Logoff</a>
+    </div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p class={{category}}>{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <!-- print current user dict at 'messages_and_comments[0]' -->
+      {{ mac }}
+
+    <form class="post_message" action="success.html" method="post">
+      <h4 class="title">Post a message</h4>
+      <textarea name="message" rows="8" cols="80"></textarea>
+      <input class="button" type="submit" name="post_message" value="Post a message">
+    </form>
+    <div class="message">
+      <h5>{{ mac['first_name'] + " " + mac['last_name'] }} - {{ mac['message_created_at'] }}</h5>
+      <p>{{ mac['message'] }}</p>
+    </div>
+    <div class="comment">
+      <h5>{{ mac['first_name'] + " " + mac['last_name'] }} - {{ mac['comment_created_at'] }}</h5>
+      <p>{{ mac['comment'] }}</p>
+    </div>
+    <form class="post_comment" action="success.html" method="post">
+      <h6 class="title">Post a comment</h6>
+      <textarea name="comment" rows="8" cols="80"></textarea>
+      <input class="button" type="submit" name="post_comment" value="Post a comment">
+    </form>
+  </div>
+</body>
+</html>

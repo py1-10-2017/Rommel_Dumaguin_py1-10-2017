@@ -1,0 +1,136 @@
+*{
+  /*border: 1px dotted red;*/
+}
+.container{
+  background-color: lightgray;
+  width: 100%;
+  min-width: 1000px;
+  text-align: center;
+  overflow: auto;
+  padding: 3em;
+}
+#header h1{
+  display: inline-block;
+}
+#header a{
+  float: right;
+}
+table{
+  /*display: block;*/
+  text-align: left;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 10px auto;
+  /*background-color: lightblue;*/
+
+}
+.login_registration{
+  display: inline-block;
+  position: relative;
+  left: -100px;
+  width: 45%;
+  padding: 0 50px 0 0;
+  /*margin: 0 35px 0 0;*/
+  vertical-align: top;
+  text-align: right;
+  /*background-color: green;*/
+}
+th,td{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 5px 5px;
+}
+.button{
+  display: inline-block;
+  box-shadow: 2px 2px 2px black;
+}
+.edit_button{
+  width: 70px;
+}
+.delete_button{
+  width: 100px;
+}
+div.inputs{
+  vertical-align: top;
+  /*text-align: left;*/
+}
+ul{
+  list-style: none;
+  width: 400px;
+  padding: 0;
+  text-align: right;
+  display: inline-block;
+  margin: 0;
+}
+li{
+  /*background-color: green;*/
+  /*border: 1px solid red;*/
+}
+form.inputs label{
+  margin-bottom: 2px;
+}
+.add_update{
+  display: inline-block;
+}
+.flash_error{
+  color: red;
+}
+.flash_success{
+  color: green;
+}
+.title{
+  text-align: left;
+}
+.post_message{
+  text-align: right;
+}
+.post_message .button{
+  background-color: #2c79e4;
+  color: white;
+  /*box-shadow: 1px 1px 1px black;*/
+}
+.post_message textarea{
+  /*background-color: lightgray;*/
+  width: 98%;
+  height: 100px;
+  display: inline;
+  border: 2px solid darkgray;
+}
+.post_comment{
+  text-align: right;
+}
+.post_comment .button{
+  background-color: #009d0f;
+  color: white;
+  /*box-shadow: 1px 1px 1px black;*/
+}
+.post_comment .title{
+  padding-left: 56px;
+}
+.post_comment textarea{
+  /*background-color: lightgray;*/
+  width: 94.75%;
+  height: 75px;
+  display: inline;
+  border: 2px solid darkgray;
+}
+div.message h5{
+  text-align: left;
+  /*padding-left: 25px;*/
+}
+div.message p{
+  text-align: justify;
+  width: 100%;
+  padding-left: 35px;
+  /*background-color: gray;*/
+}
+div.comment h5{
+  text-align: left;
+  padding-left: 55px;
+}
+div.comment p{
+  text-align: justify;
+  width: 100%;
+  padding-left: 56px;
+  /*background-color: gray;*/
+}
