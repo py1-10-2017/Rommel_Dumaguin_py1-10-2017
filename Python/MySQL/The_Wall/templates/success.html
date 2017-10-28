@@ -10,7 +10,9 @@
   <div class="container">
     <div id="header">
       <h1>The Wall</h1><a href="/logoff">Logoff</a>
+      <h5>Welcome {{ session['user_first_name'] }}!</h5>
     </div>
+{#
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           {% for category, message in messages %}
@@ -18,28 +20,37 @@
           {% endfor %}
         {% endif %}
       {% endwith %}
-
+#}
       <!-- print current user dict at 'messages_and_comments[0]' -->
-      {{ mac }}
+      {#}{{ messages }}
+      {{ comments }}#}
 
-    <form class="post_message" action="success.html" method="post">
+    <form class="post_message" action="/wall/message" method="post">
       <h4 class="title">Post a message</h4>
       <textarea name="message" rows="8" cols="80"></textarea>
       <input class="button" type="submit" name="post_message" value="Post a message">
     </form>
-    <div class="message">
-      <h5>{{ mac['first_name'] + " " + mac['last_name'] }} - {{ mac['message_created_at'] }}</h5>
-      <p>{{ mac['message'] }}</p>
-    </div>
-    <div class="comment">
-      <h5>{{ mac['first_name'] + " " + mac['last_name'] }} - {{ mac['comment_created_at'] }}</h5>
-      <p>{{ mac['comment'] }}</p>
-    </div>
-    <form class="post_comment" action="success.html" method="post">
-      <h6 class="title">Post a comment</h6>
-      <textarea name="comment" rows="8" cols="80"></textarea>
-      <input class="button" type="submit" name="post_comment" value="Post a comment">
-    </form>
+    {% for message in messages %}
+      <div class="message">
+        <h5>{{ message['first_name'] }} {{ message['last_name'] }} - {{ message['message_created_at'] }}</h5>
+        <p>{{ message['message'] }}</p>
+      </div>
+      {#{% print "message['id'] = ", message['id'] %}#}
+      {% for comment in comments %}
+        {% if comment['message_id'] == message['id'] %}
+          <div class="comment">
+            <h5>{{ comment['first_name'] }} {{ comment['last_name'] }} - {{ comment['comment_created_at'] }}</h5>
+            <p>{{ comment['comment'] }}</p>
+          </div>
+          {#{% print "comment['message_id'] = ", comment['message_id'] %}#}
+        {% endif %}
+      {% endfor %}
+      <form class="post_comment" action="/wall/{{ message['id'] }}/comment" method="post">
+        <h6 class="title">Post a comment</h6>
+        <textarea name="comment" rows="8" cols="80"></textarea>
+        <input class="button" type="submit" name="post_comment" value="Post a comment">
+      </form>
+    {% endfor %}
   </div>
 </body>
 </html>

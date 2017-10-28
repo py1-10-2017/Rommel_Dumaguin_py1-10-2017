@@ -11,15 +11,6 @@ app.secret_key = "SuperSecretKey"
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 bcrypt = Bcrypt(app)
 
-# SQL QUERIES - JUST FOR REFERENCE
-    # query = queries['create']
-queries = {
-    'create': "",  # "INSERT INTO table (column, created_at, updated_at) VALUES (:key, NOW(), NOW())",
-    'read': "",    # "SELECT * FROM table",
-    'update': "",  # "UPDATE table SET column = :key WHERE column = :key",
-    'delete': ""   # "DELETE FROM table WHERE column = :key"
-}
-
 # VALIDATORS
 def validateEmail(email):
     # Return whether or not the email passed in is valid
@@ -33,26 +24,26 @@ def validateEmail(email):
 # else:
     # flash('Invalid email!')
 
-# CLEAR SESSION FOR TESTING
+# SQL QUERIES - FOR REFERENCE
+    # 'create': "INSERT INTO table (column, created_at, updated_at) VALUES (:key, NOW(), NOW())"
+    # 'read': "SELECT * FROM table"
+    # 'update': "UPDATE table SET column = :key WHERE column = :key"
+    # 'delete': "DELETE FROM table WHERE column = :key"
+    
+# CLEAR SESSION
 @app.route('/logoff')
 def clear():
     session.clear()
     return redirect ('/')
 
-# @app.route('/') GET
-# index()
-#     Display login and registration forms on the index.html page
 @app.route('/')
 def index():
     if 'registration' not in session:
         session['registration'] = {}
-    query = "SELECT * FROM users"                           # define your query
-    users = mysql.query_db(query)                           # run query with query_db()
-    return render_template('index.html', all_users=users) # pass data to our template
+    query = "SELECT * FROM users"
+    users = mysql.query_db(query)
+    return render_template('index.html', all_users=users)
 
-# @app.route('/register') POST
-# create()
-#     Handle the register form submit and create the user in the DB
 @app.route('/register', methods=['POST'])
 def create():
     session['registration'] = {
@@ -91,13 +82,12 @@ def create():
             "pw_hash": pw_hash
         }
         new_user_id = mysql.query_db(query, data)
-        print "new_user_id:", new_user_id
-        errors.append(flash("REGISTRATION SUCCESSFUL!"))
+        session['id'] = new_user_id # remember that "INSERT" returns the id
+        print "user['id'] saving to session['id']:", session['id']
+        # errors.append(flash("Registration successful! Welcome {}!".format(request.form['first_name']), category='flash_success'))
+        session['user_first_name'] = request.form['first_name']
         return redirect('/wall')
 
-# @app.route('/login') POST
-# login()
-#     Handle the login form submit and login the user
 @app.route('/login', methods=['POST'])
 def login():
     errors = []
@@ -134,43 +124,29 @@ def login():
         if pw_match:
             session['id'] = user[0]['id']
             print "user[0]['id'] saving to session['id']:", session['id']
-            # errors.append(flash('Login successful! Welcome'))
-            errors.append(flash("Login successful! Welcome {}!".format(user[0]['first_name']), category='flash_success'))
+            # errors.append(flash("Login successful! Welcome {}!".format(user[0]['first_name']), category='flash_success'))
+            session['user_first_name'] = user[0]['first_name']
             return redirect('/wall')
         else:
             errors.append(flash('Invalid password!'))
         return redirect('/')
 
-# @app.route('/success') GET
-# success()
-#     Display the success.html page after a successful login/registration
 @app.route('/wall')
 def success():
-    query = "SELECT users.first_name, users.last_name, messages.message, DATE_FORMAT(messages.created_at, '%M %D %Y') AS message_created_at, comments.comment, DATE_FORMAT(comments.created_at, '%M %D %Y') AS comment_created_at FROM users LEFT JOIN messages ON messages.user_id = users.id LEFT JOIN comments ON comments.user_id = users.id WHERE users.id = :id"
-    data = {
-        'id': session['id']
-    }
-    messages_and_comments = mysql.query_db(query, data)
-    return render_template('success.html', mac=messages_and_comments[0])
+    messages_query = "SELECT messages.id, messages.user_id, messages.message, DATE_FORMAT(messages.created_at, '%M %D %Y') AS message_created_at, users.first_name, users.last_name FROM messages JOIN users ON messages.user_id = users.id ORDER BY messages.created_at DESC"
 
-    if 'registration' not in session:
-        session['registration'] = {}
-    query = "SELECT * FROM users"
-    users = mysql.query_db(query)
-    return render_template('index.html', all_users=users) # pass data to our template
+    comments_query = "SELECT comments.message_id, comments.comment, DATE_FORMAT(comments.created_at, '%M %D %Y') AS comment_created_at, users.first_name, users.last_name FROM comments JOIN messages ON messages.id = comments.message_id JOIN users ON comments.user_id = users.id ORDER BY comments.created_at"
 
-# @app.route('/users/<id>/edit') GET
-# edit(id)
-#     Display the edit.html page for the particular user
+    messages = mysql.query_db(messages_query)
+    comments = mysql.query_db(comments_query)
+    return render_template('success.html', messages=messages, comments=comments)
+
 @app.route('/users/<user_id>/edit')
 def edit(user_id):
     query = "SELECT * FROM users WHERE id = " + user_id
     user = mysql.query_db(query)
     return render_template('edit.html', user=user[0])
 
-# @app.route('/users/<id>') POST
-# update(id)
-#     Handle the edit user form submit and update the user in the DB
 @app.route('/users/<user_id>', methods=['POST'])
 def update(user_id):
     errors = []
@@ -203,17 +179,36 @@ def update(user_id):
         mysql.query_db(query, data)
         return redirect('/')
 
-# @app.route('/users/<id>/delete') POST
-# delete(id)
-#     Delete the user from the DB
 @app.route('/users/<user_id>/delete', methods=['POST'])
 def delete(user_id):
-    query = "DELETE FROM users WHERE id = :id"
+    # Deleted comments and messages before users due to foreign key references
+    query = "DELETE FROM comments WHERE comments.user_id = :id; DELETE FROM messages WHERE messages.user_id = :id; DELETE FROM users WHERE users.id = :id;"
     data = {
-        "id": user_id
+        'id': user_id
     }
     mysql.query_db(query, data)
     return redirect('/')
+
+@app.route('/wall/message', methods=['POST'])
+def post_message():
+    query = "INSERT INTO messages (user_id, message, created_at, updated_at) VALUES (:id, :message, NOW(), NOW());"
+    data = {
+        'id': int(session['id']),
+        'message': request.form['message']
+    }
+    mysql.query_db(query, data)
+    return redirect('/wall')
+
+@app.route('/wall/<message_id>/comment', methods=['POST'])
+def post_comment(message_id):
+    query = "INSERT INTO comments (user_id, message_id, comment, created_at, updated_at) VALUES (:id, :message_id, :comment, NOW(), NOW());"
+    data = {
+        'id': int(session['id']),
+        'message_id': message_id,
+        'comment': request.form['comment']
+    }
+    mysql.query_db(query, data)
+    return redirect('/wall')
 
 app.run(debug=True)
 

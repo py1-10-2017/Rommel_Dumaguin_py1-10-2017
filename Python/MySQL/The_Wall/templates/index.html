@@ -12,7 +12,9 @@
       <h5><em>Reference table of existing users:</em></h5>
       <table>
         <thead>
-          <th>First Name</th><th>Last Name</th><th>Email</th><th>Actions</th>
+          <tr>
+            <th>First Name</th><th>Last Name</th><th>Email</th><th>Actions</th>
+          </tr>
         </thead>
         <tbody>
           {% for idx in all_users %}
@@ -27,7 +29,7 @@
                 <form class="button" action="/users/{{ idx['id'] }}/delete" method="post">
                   <input class="delete_button" type="submit" name="delete" value="Delete">
                 </form>
-              </td>uu
+              </td>
             </tr>
           {% endfor %}
         </tbody>
