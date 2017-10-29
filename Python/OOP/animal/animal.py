@@ -32,13 +32,6 @@ class Dog(Animal):
         self.health += 5
         return self
 
-    # def hair_type(self):
-    #     return "Furry"
-    # def __init__(self):
-    #     super(Dog, self).__init__()
-    # def __init__(self):
-    #     return self
-
 print "-"*100
 dog1 = Dog("Spot", 75)
 print dog1.name
