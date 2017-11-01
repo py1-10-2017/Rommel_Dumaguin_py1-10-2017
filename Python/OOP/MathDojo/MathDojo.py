@@ -3,33 +3,21 @@ class MathDojo(object):
         self.current_number = 0
 
     def add(self, *args):
-        if args:
-            for num in args:
-                    if isinstance(num, int) or isinstance(num, float):
-                        self.current_number += num
-                    elif isinstance(num, list):
-                        for idx in num:
-                            self.current_number += idx
-                    elif isinstance(num, tuple):
-                        for idx in num:
-                            self.current_number += idx
-                    else:
-                        print "Arguments must be an number or a list"
+        for num in args:
+                if isinstance(num, int) or isinstance(num, float):
+                    self.current_number += num
+                elif isinstance(num, list) or isinstance(num, tuple):
+                    for idx in num:
+                        self.current_number += idx
         return self
 
     def subtract(self, *args):
-        if args:
-            for num in args:
-                    if isinstance(num, int) or isinstance(num, float):
-                        self.current_number -= num
-                    elif isinstance(num, list):
-                        for idx in num:
-                            self.current_number -= idx
-                    elif isinstance(num, tuple):
-                        for idx in num:
-                            self.current_number -= idx
-                    else:
-                        print "Arguments must be an number or a list"
+        for num in args:
+                if isinstance(num, int) or isinstance(num, float):
+                    self.current_number -= num
+                elif isinstance(num, list) or isinstance(num, tuple):
+                    for idx in num:
+                        self.current_number -= idx
         return self
 
     def result(self):

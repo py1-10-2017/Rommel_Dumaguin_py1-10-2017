@@ -2,9 +2,9 @@ class Product(object):
     def __init__(self, price, item_name, weight, brand):
         self.retail_price = price
         self.total_price = price
-        self.item_name = str(item_name)
+        self.item_name = item_name
         self.weight = weight
-        self.brand = str(brand)
+        self.brand = brand
         self.status = "for sale"
 
     def sell(self):
@@ -12,7 +12,7 @@ class Product(object):
         return self
 
     def add_tax(self, tax):
-        self.total_price += (self.total_price * float(tax))
+        self.total_price += (self.total_price * tax)
         return self
 
     def return_item(self, reason):
@@ -23,7 +23,8 @@ class Product(object):
             self.status = "for sale"
         elif reason == "opened":
             self.status = "used"
-            self.total_price -= (self.total_price * .2)
+            # self.total_price -= (self.total_price * .2)
+            self.total_price *= .8 # 20% discount
         return self
 
     def display_all(self):

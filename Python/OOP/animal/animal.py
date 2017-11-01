@@ -1,7 +1,7 @@
 class Animal(object):
-    def __init__(self, name, health):
+    def __init__(self, name):
         self.name = name
-        self.health = health
+        self.health = 100
 
     def walk(self):
         self.health -= 1
@@ -17,33 +17,27 @@ class Animal(object):
         print "Health: " + str(self.health)
         return self
 
-animal1 = Animal("Whiskers", 50)
+animal1 = Animal("Whiskers")
 print animal1.name
 animal1.display_health().walk().walk().walk().run().run().display_health()
 
 class Dog(Animal):
-    def __init__(self, name, *health):
-        super(Dog, self).__init__(name, health)
-        if health:
-            self.health = health[0]
-        else:
-            self.health = 150
+    def __init__(self, name):
+        super(Dog, self).__init__(name)
+        self.health = 150
     def pet(self):
         self.health += 5
         return self
 
 print "-"*100
-dog1 = Dog("Spot", 75)
+dog1 = Dog("Spot")
 print dog1.name
 dog1.display_health().walk().walk().walk().run().run().pet().display_health()
 
 class Dragon(Animal):
-    def __init__(self, name, *health):
-        super(Dragon, self).__init__(name, health)
-        if health:
-            self.health = health[0]
-        else:
-            self.health = 170
+    def __init__(self, name):
+        super(Dragon, self).__init__(name)
+        self.health = 170
     def fly(self):
         self.health -= 10
         print "health -10"
@@ -54,17 +48,14 @@ class Dragon(Animal):
         return self
 
 print "-"*100
-dragon1 = Dragon("Puff", 1000)
+dragon1 = Dragon("Puff")
 print dragon1.name
 dragon1.display_health().fly().fly().fly().display_health()
 
 class Fish(Animal):
-    def __init__(self, name, *health):
-        super(Fish, self).__init__(name, health)
-        if health:
-            self.health = health[0]
-        else:
-            self.health = 20
+    def __init__(self, name):
+        super(Fish, self).__init__(name)
+        self.health = 20
     def eat(self):
         self.health += 1
         print "health +1"
@@ -86,4 +77,4 @@ print "-"*100
 try:
     dog1.fly()
 except:
-    print "Method dog1.fly() also failed sinec it wasn't inherited"
+    print "Method dog1.fly() also caught an exception since it wasn't inherited"

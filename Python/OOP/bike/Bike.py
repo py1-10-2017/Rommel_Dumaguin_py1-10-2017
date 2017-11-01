@@ -1,13 +1,11 @@
 class Bike(object):
     def __init__(self, price, max_speed):
-        self.price = "$" + str(price)
+        self.price = price
         self.max_speed = max_speed
         self.miles = 0
     def display(self):
-        print self.price
+        print "$" + str(self.price)
         print self.max_speed
-        if self.miles < 0:
-            self.miles = 0
         print str(self.miles) + " miles"
         return self
     def ride(self):
@@ -16,7 +14,9 @@ class Bike(object):
         return self
     def reverse(self):
         print "Reversing (-5 miles)"
-        self.miles -= 5
+        # What would you do to prevent the instance from having negative miles?
+        if self.miles >= 5:
+            self.miles -= 5
         return self
 
 print "<<<Initializing bike1>>>"
