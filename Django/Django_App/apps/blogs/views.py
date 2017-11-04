@@ -7,14 +7,27 @@ from django.shortcuts import render, HttpResponse, redirect
 # the index function is called when root is visited
 def index(request):
     response = "placeholder to later display all the list of blogs"
-    return HttpResponse(response)
+    return render (request, 'blogs/index.html')
+    # return HttpResponse(response)
 
 def new(request):
     response = "placeholder to display a new form to create a new blog"
     return HttpResponse(response)
 
 def create(request):
-
+    if request.method == "POST":
+        print "*"*50
+        print request.POST
+        # print request.POST['name']
+        request.session['name'] = request.POST['name']
+        print request.session['name']
+        # print request.POST['desc']
+        request.session['desc'] = request.POST['desc']
+        print request.session['desc']
+        print "*"*50
+        return redirect("/")
+    else:
+    	return redirect("/")
     return redirect('/')
 
 def show(request, number):
@@ -26,5 +39,5 @@ def edit(request, number):
     return HttpResponse(response)
 
 def destroy(request, number):
-    
+
     return redirect('/')

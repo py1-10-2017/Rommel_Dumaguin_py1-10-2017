@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>surveys_result</title>
+      {% load static %}
+        <!-- The line above tells Django to be ready to listen for static files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'surveys/bootstrap-4.0.0-beta-dist/css/bootstrap.css' %}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'surveys/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+        <!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+  </head>
+  <body>
+    <div class="container">
+      <p>Thanks for submitting this form! You have submitted this form {{request.session.submit_count}} times now.</p>
+    </div>
+    <div class="container">
+      <u><h5>Submitted Information</h5></u>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td>{{request.session.name}}</td>
+        </tr>
+        <tr>
+          <td>Dojo Location:</td>
+          <td>{{request.session.dojo_location}}</td>
+        </tr>
+        <tr>
+          <td>Favorite Language:</td>
+          <td>{{request.session.favorite_language}}</td>
+        </tr>
+        <tr>
+          <td>Comment:</td>
+          <td>{{request.session.comment}}</td>
+        </tr>
+      </table>
+      <form class="inline-block" action="/" method="get">
+        <input class="button" type="submit" name="back" value="Go Back">
+      </form>
+      <form class="inline-block" action="logoff" method="get">
+        <input class="button" type="submit" name="reset" value="Reset">
+      </form>
+    </div>
+  </body>
+</html>

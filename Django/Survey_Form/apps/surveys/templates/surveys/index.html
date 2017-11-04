@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>surveys_index</title>
+      {% load static %}
+        <!-- The line above tells Django to be ready to listen for static files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'surveys/bootstrap-4.0.0-beta-dist/css/bootstrap.css' %}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'surveys/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+        <!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+  </head>
+  <body>
+    <!-- <h1>Hello World!</h1> -->
+    <div class="container">
+      <form action="/surveys/process" method="post">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>
+              Your Name:
+            </td>
+            <td>
+              <input type="text" name="name" placeholder="name">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Dojo Location:
+            </td>
+            <td>
+              <select class="" name="dojo_location">
+                <option value="Bellevue">Bellevue</option>
+                <option value="Online">Online</option>
+                <option value="Mountain View">Mountain View</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Favorite Language:
+            </td>
+            <td>
+              <select class="" name="favorite_language">
+                <option value="C#">C#</option>
+                <option value="C++">C++</option>
+                <option value="Javascript">Javascript</option>
+                <option value="Python">Python</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        Comment (optional): <br/>
+        <textarea name="comment" placeholder="comment"></textarea><br/>
+        <input class="button" type="submit" value="submit">
+      </form>
+
+
+      	<!-- Your Name: <input type="text" name="name" placeholder="name"><br/>
+        Dojo Location:
+          <select class="" name="dojo_location">
+            <option value="Bellevue">Bellevue</option>
+            <option value="Online">Online</option>
+            <option value="Mountain View">Mountain View</option>
+          </select><br/>
+        Favorite Language:
+          <select class="" name="favorite_language">
+            <option value="C#">C#</option>
+            <option value="C++">C++</option>
+            <option value="Javascript">Javascript</option>
+            <option value="Python">Python</option>
+          </select><br/>
+        Comment (optional): <br/>
+        <textarea name="comment" placeholder="comment"></textarea><br/>
+      	<input class="button" type="submit" value="submit">
+      </form> -->
+    </div>
+  </body>
+</html>
