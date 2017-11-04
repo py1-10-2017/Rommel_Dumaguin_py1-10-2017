@@ -30,7 +30,7 @@ def process(request):
         request.session['comment'] = request.POST['comment']
         print "*"*50
         response = "processed!"
-        if 'submit_count' not in request.session:
+        if 'submit_count' not in request.session: # Use Try Else next time!
             request.session['submit_count'] = 1
         else:
             request.session['submit_count'] += 1
