@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>store_result</title>
+      {% load static %}
+        <!-- The line above tells Django to be ready to listen for static files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'store/bootstrap-4.0.0-beta-dist/css/bootstrap.css' %}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'store/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+        <!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+  </head>
+  <body>
+    <div class="container">
+      <p>Thank you for your business!</p>
+      <p>We charged your credit card ${{request.session.last_transaction}}.</p>
+      <p>You have ordered {{request.session.total_items_count}} items so far, and spent ${{request.session.order_total}} with Amadon.com!</p>
+      <form class="inline-block" action="/" method="get">
+        <input class="button" type="submit" name="back" value="Go Back">
+      </form>
+      <form class="inline-block" action="logoff" method="get">
+        <input class="button" type="submit" name="reset" value="Reset">
+      </form>
+    </div>
+  </body>
+</html>

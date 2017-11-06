@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>store_index</title>
+      {% load static %}
+        <!-- The line above tells Django to be ready to listen for static files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'store/bootstrap-4.0.0-beta-dist/css/bootstrap.css' %}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'store/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+        <!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+  </head>
+  <body>
+    <!-- <h1>Hello World!</h1> -->
+    <table>
+      <!-- thead, tbody, tfoot needed? Style separately! -->
+      <thead>
+        <tr>
+          <td>Item</td>
+          <td>Price</td>
+          <!-- <td>Quantity</td> -->
+          <td>Actions</td>
+        </tr>
+      </thead>
+      {% for item in items %}
+        <!-- {{ item }} {{ forloop.counter0 }} -->
+          <!-- counter starting at index 0 -->
+        {% if forloop.counter0|divisibleby:2 %}
+        <tr class="tr_dark">
+        {% else %}
+        <tr class="tr_light">
+        {% endif %}
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }}</td>
+          <td>
+            <form class="" action="process/{{ item.id }}" method="post">
+              {% csrf_token %}
+              <select class="" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+          <!-- </td>
+          <td> -->
+              <input class="button" type="submit" value="Buy!"></td>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
