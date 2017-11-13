@@ -24,7 +24,7 @@
             {% else %}
             <tr class="tr_light">
             {% endif %}
-              <td></a>{{ user.id }}</td>
+              <td>{{ user.id }}</td>
               <td><a href="/semi_restful_users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
               <td>{{ user.email }}</td>
               <td>{{ user.created_at|date:"F dS Y" }}</td> <!-- July 1st, 2017 -->
