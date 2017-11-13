@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>semi_restful_users_create</title>
+      {% load static %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" type="text/css" href="{% static 'semi_restful_users/bootstrap-4.0.0-beta-dist/css/bootstrap.css' %}" media="screen" title="no title" charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="{% static 'semi_restful_users/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+      <!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add a new user</h1>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <form class="add_update" action="/semi_restful_users/create" method="post">
+      {% csrf_token %}
+        <div class="form_group">
+          <label for="first_name">First Name:</label><br>
+          <input type="text" name="first_name" value="{{ request.session.first_name }}">
+        <div class="form_group">
+          <label for="last_name">Last Name:</label><br>
+          <input type="text" name="last_name" value="{{ request.session.last_name }}">
+        </div>
+        <div class="form_group">
+          <label for="email">Email:</label><br>
+          <input type="text" name="email" value="{{ request.session.email }}">
+        </div>
+        <input class="button" type="submit" name="create" value="Create">
+      </form>
+      <br>
+      <a href="/semi_restful_users">All Users</a>
+    </div>
+  </body>
+</html>

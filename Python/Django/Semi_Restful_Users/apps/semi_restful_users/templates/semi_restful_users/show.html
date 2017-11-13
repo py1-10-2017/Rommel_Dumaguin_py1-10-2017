@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>semi_restful_users_success</title>
+      {% load static %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" type="text/css" href="{% static 'semi_restful_users/bootstrap-4.0.0-beta-dist/css/bootstrap.css' %}" media="screen" title="no title" charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="{% static 'semi_restful_users/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+      <!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+  </head>
+  <body>
+    <!-- USERS -->
+    <div class="container">
+      <h1>User {{ user.id }} </h1>
+      <p>Full Name: {{ user.first_name }} {{ user.last_name }}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Created at: {{ user.created_at|date:"F dS Y" }}</p>
+      <br>
+      <a href="/semi_restful_users">All Users</a>
+      <span> | </span>
+      <a href="/semi_restful_users/{{ user.id }}/edit">Edit</a>
+      <span> | </span>
+      <a href="/semi_restful_users/{{ user.id }}/destroy">Delete</a>
+    </div>
+  </body>
+</html>
