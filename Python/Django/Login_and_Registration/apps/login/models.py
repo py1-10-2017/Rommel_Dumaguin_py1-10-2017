@@ -4,7 +4,7 @@ from django.db import models
 import bcrypt
 import re
 
-NAME_REGEX = re.compile(r'^[a-zA-Z]\w+$')
+NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 
 # Create your models here.
@@ -39,6 +39,7 @@ class UserManager(models.Manager):
                         if len(value) < 2:
                             errors[key] = "{} should be 2 or more characters.".format(key.replace("_"," "))
                         # check for letters
+                        # elif not value.isalpha():
                         elif not re.match(NAME_REGEX, value):
                             errors[key] = "{} should only have letters.".format(key.replace("_"," "))
                 if key == "email":

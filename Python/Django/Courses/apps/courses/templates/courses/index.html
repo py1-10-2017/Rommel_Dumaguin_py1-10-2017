@@ -37,29 +37,29 @@
           </tr>
         </table>
       </form>
-        <h4>Courses</h4>
-        <table class="courses_group">
-          <thead>
-            <th>Course Name</th><th>Description</th><th>Date Added</th><th>Actions</th>
-          </thead>
-          <tbody>
-            {% for course in courses %}
-              {% if not forloop.counter|divisibleby:2 %}
-              <tr class="tr_dark">
-              {% else %}
-              <tr class="tr_light">
-              {% endif %}
-                <td>{{ course.name }}</td>
-                <td>{{ course.description }}</td>
-                <td>{{ course.created_at|date:"M dS Y g:iA" }}</td> <!-- July 1st, 2017 -->
-                  <!-- https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#date -->
-                <td>
-                    <a href="/courses/{{ course.id }}/confirm_destroy" class="remove">remove</a>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      <h4>Courses</h4>
+      <table class="courses_group">
+        <thead>
+          <th>Course Name</th><th>Description</th><th>Date Added</th><th>Actions</th>
+        </thead>
+        <tbody>
+          {% for course in courses %}
+            {% if not forloop.counter|divisibleby:2 %}
+            <tr class="tr_dark">
+            {% else %}
+            <tr class="tr_light">
+            {% endif %}
+              <td>{{ course.name }}</td>
+              <td>{{ course.description }}</td>
+              <td>{{ course.created_at|date:"M dS Y g:iA" }}</td> <!-- July 1st, 2017 -->
+                <!-- https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#date -->
+              <td>
+                  <a href="/courses/{{ course.id }}/confirm_destroy" class="remove">remove</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
