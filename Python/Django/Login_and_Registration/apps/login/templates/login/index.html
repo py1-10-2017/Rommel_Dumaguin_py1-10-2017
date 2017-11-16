@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>login_index</title>
+      {% load static %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" type="text/css" href="{% static 'login/bootstrap-4.0.0-beta-dist/css/bootstrap.css' %}" media="screen" title="no title" charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="{% static 'login/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+      <!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+  </head>
+  <body>
+    <div class="container">
+      <h5><em>Reference table of existing users:</em></h5>
+      <table>
+        <thead>
+          <th>First Name</th><th>Last Name</th><th>Email</th>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td>{{ user.first_name }}</td>
+              <td>{{ user.last_name }}</td>
+              <td>{{ user.email }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="/delete">Delete last user</a>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <h4>Login</h4>
+      <form class="add_update" action="/login" method="post">
+      {% csrf_token %}
+      <ul class="login_reg">
+        <li>
+          <label for="email">Email:
+            <input type="text" name="email" value="{{ request.session.login_email }}">
+          </label>
+        </li>
+        <li>
+          <label for="password">Password:
+            <input type="text" name="password">
+          </label>
+        </li>
+      </ul>
+          <input class="button" type="submit" name="login" value="Login">
+      </form>
+      <h4>Registration</h4>
+      <form class="add_update" action="/register" method="post">
+      {% csrf_token %}
+      <ul class="login_reg">
+        <li>
+          <label for="first_name">First Name:
+            <input type="text" name="first_name" value="{{ request.session.registration_first_name }}">
+          </label>
+        </li>
+        <li>
+          <label for="last_name">Last Name:
+            <input type="text" name="last_name" value="{{ request.session.registration_last_name }}">
+          </label>
+        </li>
+        <li>
+          <label for="email">Email:
+            <input type="text" name="email" value="{{ request.session.registration_email }}">
+          </label>
+        </li>
+        <li>
+          <label for="password">Password:
+      <input type="text" name="password">
+          </label>
+        </li>
+        <li>
+          <label for="confirm_password">Confirm Password:
+            <input type="text" name="confirm_password">
+          </label>
+        </li>
+      </ul>
+      <input class="button" type="submit" name="register" value="Register">
+      </form>
+    </div>
+  </body>
+</html>
